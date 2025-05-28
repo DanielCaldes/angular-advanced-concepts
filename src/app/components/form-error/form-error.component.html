@@ -1,0 +1,49 @@
+<div *ngIf="control?.touched && control?.invalid" class="error-message">
+  <small *ngIf="control?.errors?.['required']">
+    Este campo es obligatorio.
+  </small>
+  
+  <small *ngIf="control?.errors?.['minlength'] as err">
+    La longitud mínima es de {{ err.requiredLength }} caracteres (actual: {{ err.actualLength }}).
+  </small>
+  
+  <small *ngIf="control?.errors?.['maxlength'] as err">
+    Se excedió la longitud máxima. El máximo permitido es {{ err.requiredLength }} caracteres (actual: {{ err.actualLength }}).
+  </small>
+  
+  <small *ngIf="control?.errors?.['email']">
+    Por favor, introduce una dirección de correo válida.
+  </small>
+  
+  <small *ngIf="control?.errors?.['pattern']">
+    Formato inválido.
+  </small>
+  
+  <small *ngIf="control?.errors?.['notAdult']">
+    Debes tener al menos 18 años.
+  </small>
+  
+  <small *ngIf="control?.errors?.['missingUppercase']">
+    Debe incluir una letra mayúscula.
+  </small>
+  
+  <small *ngIf="control?.errors?.['missingLowercase']">
+    Debe incluir una letra minúscula.
+  </small>
+  
+  <small *ngIf="control?.errors?.['missingNumber']">
+    Debe incluir un número.
+  </small>
+  
+  <small *ngIf="control?.errors?.['missingSymbol']">
+    Debe incluir un símbolo especial.
+  </small>
+  
+  <small *ngIf="control?.errors?.['invalidPhone']">
+    Número de teléfono inválido.
+  </small>
+
+  <small *ngIf="control?.errors?.['invalidChars'] as invalids">
+    Caracteres no permitidos: {{ invalids.join(', ') }}
+  </small>
+</div>

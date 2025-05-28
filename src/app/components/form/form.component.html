@@ -1,19 +1,32 @@
 <h2>Formulario</h2>
 <form [formGroup]="register" (ngSubmit)="submit()">
     <label>Name</label>
-    <input id="name" type="text" formControlName="name">
+    <input id="name" type="text" formControlName="name" [ngClass]="{ 'input-error': register.get('name')?.invalid && register.get('name')?.touched }">
+    <app-form-error [control]="register.get('name')"></app-form-error>
+
     <label>Surname</label>
     <input id="surname" type="text" formControlName="surname">
+    <app-form-error [control]="register.get('surname')"></app-form-error>
+
     <label>Email</label>
     <input id="email" type="email" formControlName="email">
+    <app-form-error [control]="register.get('email')"></app-form-error>
+
     <label>Password</label>
     <input id="password" type="password" formControlName="password">
+    <app-form-error [control]="register.get('password')"></app-form-error>
+
     <label>Phone</label>
     <input id="phone" type="tel" formControlName="phone">
+    <app-form-error [control]="register.get('phone')"></app-form-error>
+
     <label>Birthdate</label>
     <input id="birthdate" type="date" formControlName="birthdate">
+    <app-form-error [control]="register.get('birthdate')"></app-form-error>
+
     <label>Direction</label>
     <input id="address" type="text" formControlName="address">
+    <app-form-error [control]="register.get('address')"></app-form-error>
 
     <button type="submit" *ngIf="register.valid">Enviar</button>
 </form>
