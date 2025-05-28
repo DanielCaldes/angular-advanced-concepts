@@ -1,0 +1,22 @@
+<h2>Tabla</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID Producto</th>
+            <th>Nombre Producto</th>
+            <th>Categoría</th>
+            <th>Precio $</th>
+            <th>Unidades Vendidas</th>
+            <th>Fecha Venta</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let sale of salesList">
+        <td>{{sale.productId}}</td>
+        <td>{{sale.productName}}</td>
+        <td>{{sale.category}}</td>
+        <td>{{sale.priceUSD}}</td>
+        <td>{{sale.unitsSold}}</td>
+        <td>{{sale.saleDate | date}}</td>
+    </tbody>
+</table>

@@ -1,0 +1,19 @@
+<h2>Formulario</h2>
+<form [formGroup]="register" (ngSubmit)="submit()">
+    <label>Name</label>
+    <input id="name" type="text" formControlName="name">
+    <label>Surname</label>
+    <input id="surname" type="text" formControlName="surname">
+    <label>Email</label>
+    <input id="email" type="email" formControlName="email">
+    <label>Password</label>
+    <input id="password" type="password" formControlName="password">
+    <label>Phone</label>
+    <input id="phone" type="tel" formControlName="phone">
+    <label>Birthdate</label>
+    <input id="birthdate" type="date" formControlName="birthdate">
+    <label>Direction</label>
+    <input id="address" type="text" formControlName="address">
+
+    <button type="submit" *ngIf="register.valid">Enviar</button>
+</form>
