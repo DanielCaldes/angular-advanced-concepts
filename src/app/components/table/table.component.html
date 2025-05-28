@@ -1,12 +1,15 @@
 <h2>Tabla</h2>
+<button (click)="toggleTable()">Cambiar estilo y columnas a {{showAlternateColumns ? "Categoria y Precio" : "Stock y Proveedor"}}</button>
 
 <table>
     <thead>
-        <tr>
+        <tr [ngClass]="{'highlight-header': showAlternateColumns}">
             <th>ID Producto</th>
             <th>Nombre Producto</th>
-            <th>Categoría</th>
-            <th>Precio $</th>
+            <th *ngIf="!showAlternateColumns">Categoría</th>
+            <th *ngIf="!showAlternateColumns">Precio $</th>
+            <th *ngIf="showAlternateColumns">Stock</th>
+            <th *ngIf="showAlternateColumns">Proveedor</th>
             <th>Unidades Vendidas</th>
             <th>Fecha Venta</th>
         </tr>
@@ -14,8 +17,10 @@
     <tbody *ngFor="let sale of salesList">
         <td>{{sale.productId}}</td>
         <td>{{sale.productName}}</td>
-        <td>{{sale.category}}</td>
-        <td>{{sale.priceUSD}}</td>
+        <td *ngIf="!showAlternateColumns">{{ sale.category }}</td>
+        <td *ngIf="!showAlternateColumns">{{ sale.priceUSD }}</td>
+        <td *ngIf="showAlternateColumns">{{ sale.stock }}</td>
+        <td *ngIf="showAlternateColumns">{{ sale.supplier }}</td>
         <td>{{sale.unitsSold}}</td>
         <td>{{sale.saleDate | date}}</td>
     </tbody>

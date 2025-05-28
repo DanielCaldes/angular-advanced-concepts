@@ -1,27 +1,84 @@
-# AdvancedConcepts
+# Angular Basic Concepts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
+Este proyecto es una demostración práctica de conceptos básicos de Angular. Se desarrolla desde cero utilizando Angular CLI, sin enrutamiento y con SCSS como preprocesador de estilos.
 
-## Development server
+He incluido validación propia en los formularios para dar más información al usuario.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Desplegado en GitHub Pages: https://danielcaldes.github.io/angular-advanced-concepts/
 
-## Code scaffolding
+## Tecnologías usadas
+- Angular
+- SCSS
+- TypeScript
+- GitHub Pages para despliegue
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Cómo ejecutar localmente
+1. ``git clone https://github.com/DanielCaldes/angular-advanced-concepts.git``
+2. ``cd angular-advanced-concepts``
+3. ``npm install``
+4. ``ng serve``
+5. Accede a la app en ``http://localhost:4200``
 
-## Build
+Cómo desplegar en GitHub Pages
+1. ``ng build --base-href "https://danielcaldes.github.io/angular-advanced-concepts/"``
+2. ``npx angular-cli-ghpages --dir=dist/angular-advanced-concepts/browser``
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Descripción del proyecto
 
-## Running unit tests
+1. Componente: Tabla (table)
+- Permite cambiar el estilo de una tabla y ocultar dos columnas.
+- Usa *ngFor para rellenar los datos de la tabla.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Componente: Formulario (form)
+- Formulario que recoge:
+  - Nombre
+  - Apellido
+  - Email
+  - Contraseña
+  - Teléfono
+  - Fecha de nacimiento
+  - Dirección
+- Valida todos las campos antes de mostrar el botón para enviar mostrando los errores de forma clara al usuario.
 
-## Running end-to-end tests
+3. Componente principal (AppComponent)
+- Integra los 2 componentes anteriores y los organiza en secciones.
+- Hace uso de routing para navegar entre componentes mediante dos botones y en la ruta predefinida llama a la tabla.
+- Estilizado con SCSS para una mejor presentación visual.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Estructura del proyecto
+```
+📁 src/
+├── 📁 app/
+│   ├── 📁 components/
+│   │   ├── 📁 form/
+│   │   │   ├── 📄 form.component.html
+│   │   │   ├── 📄 form.component.scss
+│   │   │   ├── 📄 form.component.spec.ts
+│   │   │   └── 📄 form.component.ts
+│   │   ├── 📁 form-error/
+│   │   │   ├── 📄 form-error.component.html
+│   │   │   ├── 📄 form-error.component.scss
+│   │   │   ├── 📄 form-error.component.spec.ts
+│   │   │   └── 📄 form-error.component.ts
+│   │   └── 📁 table/
+│   │       ├── 📄 table.component.html
+│   │       ├── 📄 table.component.scss
+│   │       ├── 📄 table.component.spec.ts
+│   │       └── 📄 table.component.ts
+│   ├── 📁 models/
+│   │   ├── 📄 productSale.model.ts         //Modelo de datos para los productos de la tabla
+│   │   └── 📄 user.model.ts                //Modelo de datos para los usuarios registrados del formulario
+│   ├── 📁 utils/
+│   │   ├── 📁 validators/
+│   │   │   ├── 📄 adult.validator.ts
+│   │   │   ├── 📄 name.validator.ts
+│   │   │   ├── 📄 password.validator.ts
+│   │   │   ├── 📄 phone.validator.ts
+│   │   │   └── 📄 validators.ts            //Centralizar el acceso a los validadores
+│   ├── 📄 app.component.html
+│   ├── 📄 app.component.scss
+│   ├── 📄 app.component.spec.ts
+│   └── 📄 app.component.ts
+├── 📁 assets/
+└── 📄 styles.scss
+```

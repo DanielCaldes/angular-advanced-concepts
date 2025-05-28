@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormErrorComponent } from '../form-error/form-error.component';
-import { passwordValidator, phoneValidator, nameValidator} from '../../utils/validators/validators';
+import { passwordValidator, phoneValidator, nameValidator, adultValidator} from '../../utils/validators/validators';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-form',
@@ -14,19 +14,7 @@ import { passwordValidator, phoneValidator, nameValidator} from '../../utils/val
 })
 export class FormComponent {
 
-  validateAdult(control: AbstractControl): { [key: string]: boolean } | null {
-    if (!control.value) return null;
-
-    const today = new Date();
-    const birthDate = new Date(control.value);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-
-    return age >= 18 ? null : { 'notAdult': true };
-  }
+  
   register :FormGroup;
 
   constructor(private fb:FormBuilder){
@@ -36,39 +24,31 @@ export class FormComponent {
       email: ['',[Validators.email,Validators.required]],
       password: ['',[Validators.required,Validators.minLength(8), passwordValidator]],
       phone: ['',[Validators.required, phoneValidator]],
-      birthdate: ['',[Validators.required, this.validateAdult]],
+      birthdate: ['',[Validators.required, adultValidator]],
       address: ['',[Validators.required, Validators.minLength(5)]],
     });
   }
 
   submit() {
 
-    const {
-      name,
-      surname,
-      email,
-      password,
-      phone,
-      birthdate,
-      address
-    } = this.register.value;
+    const userData: User = this.register.value;
 
-    const maskedPassword = password
-      ? password[0] + '*'.repeat(password.length - 1)
-      : '';
+    const maskedPassword = userData.password
+    ? userData.password[0] + '*'.repeat(userData.password.length - 1)
+    : '';
 
     const response = `Datos usuario:
-      Name: ${name}
-      Surname: ${surname}
-      Email: ${email}
+      Name: ${userData.name}
+      Surname: ${userData.surname}
+      Email: ${userData.email}
       Password: ${maskedPassword}
-      Phone: ${phone}
-      Birthdate: ${birthdate}
-      Address: ${address}
+      Phone: ${userData.phone}
+      Birthdate: ${userData.birthdate}
+      Address: ${userData.address}
     `;
 
     console.log(response);
-
+    this.register.reset();
     alert(response);
   }
 }
