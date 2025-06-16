@@ -1,4 +1,4 @@
-# Angular Basic Concepts
+# Angular Advanced Concepts
 
 Este proyecto es una demostración práctica de conceptos básicos de Angular. Se desarrolla desde cero utilizando Angular CLI, sin enrutamiento y con SCSS como preprocesador de estilos.
 
